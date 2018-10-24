@@ -1,9 +1,7 @@
 FROM php:7.2-apache
-RUN docker-php-ext-install mysqli pdo pdo_mysql && adduser florian && usermod -g www-data florian
+RUN docker-php-ext-install mysqli pdo pdo_mysql && adduser -g www-data -p coucoucou florian
 
 ENV PHP_EXTENSIONS 'mysqli pdo pdo_mysql'
 ENV APACHE_DOCUMENT_ROOT /mysrc/
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
-
-EXPOSE 80

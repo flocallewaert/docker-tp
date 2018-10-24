@@ -6,20 +6,14 @@ services:
     build: ./php
     ports: 
      - "30000:80"
-#     - "443:443"
     volumes: 
      - ./src:/mysrc/
     depends_on: 
      - db
-    environment:
-     - PHP_EXTENSIONS=pdo_mysql
-     - APACHE_DOCUMENT_ROOT /mysrc/
 
   db:
     image: mariadb:10.2
     restart: always
-#    ports: 
-#     - "3306:3306"
     volumes:
      - ./db:/lib/mysql
     environment: 
